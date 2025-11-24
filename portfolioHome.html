@@ -1,0 +1,484 @@
+
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TakeHaya's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        // Tailwind CSSのカスタム設定
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        'dark-bg': '#0a0a0a', 
+                        'dark-card': '#171717',
+                        'primary': '#2563eb', 
+                        'primary-hover': '#1d4ed8',
+                        'light-text': '#f3f4f6', 
+                        'sub-text': '#9ca3af', 
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* スクロールバー */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 3px; }
+        
+        /* ユーティリティクラス */
+        .section-heading {
+            @apply font-serif text-4xl md:text-5xl font-bold text-white text-center mb-12;
+        }
+
+        /* セクションのフェードインアニメーション */
+        .section-animate {
+            opacity: 0;
+            /* JavaScriptで表示時にクラスを追加する想定だが、
+               今回はデモのためconfigのanimationを直接利用 */
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-light-text font-sans antialiased selection:bg-primary/30 selection:text-white">
+
+    <header class="fixed top-0 z-50 w-full bg-dark-bg/80 backdrop-blur-md border-b border-white/5 shadow-lg shadow-black/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="font-serif text-2xl font-bold text-white hover:text-primary transition-colors duration-300">
+                TakeHaya's Portfolio
+            </a>
+            <div class="hidden md:flex space-x-8 items-center font-medium">
+                <a href="#about" class="text-sub-text hover:text-primary transition-colors duration-300">About</a>
+                <a href="#works" class="text-sub-text hover:text-primary transition-colors duration-300">Works</a>
+                <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-full font-medium hover:bg-primary-hover transition-all duration-300 shadow-lg shadow-primary/20">
+                    Contact
+                </a>
+            </div>
+            <div class="md:hidden text-sub-text">
+                <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="min-h-screen flex items-center justify-center pt-20 animate-fade-in-up">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="font-serif text-6xl md:text-8xl font-bold text-white mb-6 leading-tight tracking-tight">
+                    Hayaki Takeichi
+                </h1>
+                <p class="text-2xl md:text-3xl text-primary font-medium mb-10 tracking-widest uppercase">
+                    System Engineer
+                </p>
+                <p class="text-lg text-sub-text mb-16 max-w-xl mx-auto leading-relaxed">
+                    システムエンジニアとして、技術の力でビジネス課題を解決します。
+                    AIソリューションの開発とDX推進に取り組んでいます。
+                </p>
+                <a href="#works" class="inline-block border-2 border-primary text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 shadow-lg shadow-primary/10">
+                    制作物を見る
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 section-animate animate-fade-in-up" style="animation-delay: 0.3s;">
+            <h2 class="text-4xl font-bold text-center mb-4 text-white">About Me</h2>
+            <div class="w-20 h-1 bg-primary mx-auto mb-12"></div>
+            
+            <div class="max-w-7xl mx-auto mb-8">
+                <div class="flex flex-wrap justify-center gap-4 border-b border-gray-700">
+                    <button class="tab-button active px-6 py-3 text-lg font-medium text-white border-b-2 border-primary transition-colors duration-300" data-tab="profile">
+                        Profile
+                    </button>
+                    <button class="tab-button px-6 py-3 text-lg font-medium text-sub-text border-b-2 border-transparent hover:text-primary transition-colors duration-300" data-tab="history">
+                        My History
+                    </button>
+                    <button class="tab-button px-6 py-3 text-lg font-medium text-sub-text border-b-2 border-transparent hover:text-primary transition-colors duration-300" data-tab="myskills">
+                        My Skills
+                    </button>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto">
+                <div id="profile" class="tab-content">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-dark-card flex-shrink-0 border-4 border-primary shadow-lg shadow-primary/30">
+                            <svg class="w-full h-full text-sub-text p-8" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"></path></svg>
+                        </div>
+                        <div class="max-w-xl text-center md:text-left">
+                            <h3 class="text-2xl font-bold text-white mb-4">プロフィール</h3>
+                            <p class="text-lg text-sub-text mb-6">
+                                同志社大学卒業後、大手学習塾で1年間勤務し、その後未経験でIT業界へキャリアチェンジ。
+                                現在はIT企業でSEとして、Java, Python, C++での開発、Linux環境での実務経験を約3年間積んでいます。
+                                また、独学で最新AIツールのキャッチアップ、AIツールを活用した開発を行っています。
+                                約3年のSE経験（Java, Python）と、ビジネス・経営領域（中小企業診断士取得）の知見を強みとしています。
+                                技術の力でビジネス課題を構造化し、解決に導くAIソリューションの開発・DX推進に強い関心があります。
+                            </p>
+                            <div class="space-y-2 text-sub-text">
+                                <p><span class="text-primary font-medium">名前:</span> 武市隼輝 (Hayaki Takeichi)</p>
+                                <p><span class="text-primary font-medium">所在地:</span> 東京都</p>
+                                <p><span class="text-primary font-medium">趣味:</span> バスケ観戦、筋トレ、料理</p>
+                                <p><span class="text-primary font-medium">メール:</span> your_email@example.com</p>
+                                <p><span class="text-primary font-medium">GitHub:</span> <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline"></a></p>
+                                <p><span class="text-primary font-medium">LinkedIn:</span> <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline"></a></p>
+                                <p><span class="text-primary font-medium">X:</span> <a href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline"></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="history" class="tab-content hidden">
+                    <div class="max-w-6xl mx-auto">
+                        <h3 class="text-2xl font-bold text-white mb-8 text-center">経歴</h3>
+                        <div class="space-y-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-4">2023/05-現在</h4>
+                                <ul class="space-y-3 ml-6">
+                                    <li class="text-sub-text flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span>SEとしてIT企業勤務。大規模生体認証システムの開発・保守・テストまで幅広く担当(Java, Python, C++,Linux等)</span>
+                                    </li>
+                                    <li class="text-sub-text flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span>AIツール・資格の自己学習、ポートフォリオシステム開発</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-4">2022-2023/04</h4>
+                                <ul class="space-y-3 ml-6">
+                                    <li class="text-sub-text flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span>大手学習塾に勤務</span>
+                                    </li>
+                                    </ul>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-4">2022/03</h4>
+                                <ul class="space-y-3 ml-6">
+                                    <li class="text-sub-text flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span>同志社大学 理工学部 卒業</span>
+                                    </li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="myskills" class="tab-content hidden">
+                    <div class="max-w-7xl mx-auto">
+                        <h3 class="text-2xl font-bold text-white mb-8 text-center">スキル概要</h3>
+                        
+                        <div class="mb-12">
+                            <h4 class="text-xl font-semibold text-white mb-6 flex items-center">
+                                <span class="w-1 h-6 bg-primary mr-3"></span>
+                                Skills
+                            </h4>
+                            <div class="bg-dark-card p-6 rounded-lg border border-gray-700">
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h5 class="text-sm font-semibold text-primary mb-3">実務</h5>
+                                        <div class="space-y-2">
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">Python, Java, C++ - 経験 3年</p>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">Linux, SQL(MySQL/Oracle), Git - 経験 3年</p>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">Docker, Kubernetes, Azure - 経験 3年</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-semibold text-primary mb-3">ポートフォリオ開発</h5>
+                                        <div class="space-y-2">
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">FastAPI, CrewAI, TypeScript, React, Node.js</p>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">Vibe Coding, RAG, Streamlit</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-12">
+                            <h4 class="text-xl font-semibold text-white mb-6 flex items-center">
+                                <span class="w-1 h-6 bg-primary mr-3"></span>
+                                Tools
+                            </h4>
+                            <div class="bg-dark-card p-6 rounded-lg border border-gray-700">
+                                <div class="max-w-2xl">
+                                    <div class="mb-4">
+                                        <h5 class="text-sm font-semibold text-primary mb-3">実務使用</h5>
+                                        <div class="space-y-2">
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">VSCode, Vim, GitHub Copilot, Redmine, Wiki, Slack</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h5 class="text-sm font-semibold text-primary mb-3">ポートフォリオ開発</h5>
+                                        <div class="space-y-2">
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">GitHub, Cursor, ClaudeCode, Render</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-semibold text-primary mb-3">使用経験あり</h5>
+                                        <div class="space-y-2">
+                                            <div class="flex items-start">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                                <p class="text-white font-medium">Dify, NotebookLM, Google AI Studio, Perplexity, Genspark, Bubble</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6 flex items-center">
+                                <span class="w-1 h-6 bg-primary mr-3"></span>
+                                Qualifications
+                            </h4>
+                            <div class="bg-dark-card p-6 rounded-lg border border-gray-700">
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="flex items-start">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                        <div>
+                                            <p class="text-white font-medium">基本/応用情報技術者</p>
+                                            <p class="text-xs text-sub-text">2022/10, 2024/12</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                        <div>
+                                            <p class="text-white font-medium">LPIC Level 1</p>
+                                            <p class="text-xs text-sub-text">2023/08</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                        <div>
+                                            <p class="text-white font-medium">Oracle Silver SQL</p>
+                                            <p class="text-xs text-sub-text">2023/10</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                        <div>
+                                            <p class="text-white font-medium">Java Silver/Gold</p>
+                                            <p class="text-xs text-sub-text">2023/09, 2023/11</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                        <div>
+                                            <p class="text-white font-medium">G検定</p>
+                                            <p class="text-xs text-sub-text">2023/05</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                        <div>
+                                            <p class="text-white font-medium">TOEIC 905点</p>
+                                            <p class="text-xs text-sub-text">2024/09</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                                        <div>
+                                            <p class="text-white font-medium">中小企業診断士</p>
+                                            <p class="text-xs text-sub-text">2026/01</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="works" class="py-20 section-animate animate-fade-in-up" style="animation-delay: 0.5s;">
+            <div class="container mx-auto px-7 max-w-15xl">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">My Works</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-12 -mt-10"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <div class="bg-dark-card rounded-lg shadow-lg overflow-hidden border border-gray-700 transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-primary/30 flex flex-col">
+                        <div class="w-full h-56 bg-gray-600 flex items-center justify-center text-sub-text">
+                            [ 制作物サムネイル 1 ]
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-semibold text-white mb-3">制作物タイトル 1</h3>
+                            <p class="text-sub-text mb-6 flex-grow">
+                                制作物の簡単な説明をここに記述します。（例：〇〇を管理するためのWebアプリケーション）
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <span class="bg-primary/20 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">React</span>
+                                <span class="bg-primary/20 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">Node.js</span>
+                                <span class="bg-primary/20 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">Firebase</span>
+                            </div>
+                            <div class="mt-auto flex justify-center">
+                                <a href="[GitHub URL]" target="_blank" rel="noopener noreferrer" class="inline-block text-center bg-gray-600 text-white px-10 py-3 rounded-lg font-medium hover:bg-gray-500 transition-colors duration-300">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-dark-card rounded-lg shadow-lg overflow-hidden border border-gray-700 transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-primary/30 flex flex-col">
+                        <div class="w-full h-56 bg-gray-600 flex items-center justify-center text-sub-text">
+                            [ 制作物サムネイル 2 ]
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-semibold text-white mb-3">制作物タイトル 2</h3>
+                            <p class="text-sub-text mb-6 flex-grow">
+                                制作物の簡単な説明をここに記述します。（例：〇〇を自動化するCLIツール）
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <span class="bg-primary/20 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-primary/20 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">Docker</span>
+                            </div>
+                            <div class="mt-auto flex justify-center">
+                                <a href="[GitHub URL]" target="_blank" rel="noopener noreferrer" class="inline-block text-center bg-gray-600 text-white px-10 py-3 rounded-lg font-medium hover:bg-gray-500 transition-colors duration-300">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-dark-card rounded-lg shadow-lg overflow-hidden border border-gray-700 transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-primary/30 flex flex-col">
+                        <div class="w-full h-56 bg-gray-600 flex items-center justify-center text-sub-text">
+                            [ 制作物サムネイル 3 ]
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-semibold text-white mb-3">制作物タイトル 3</h3>
+                            <p class="text-sub-text mb-6 flex-grow">
+                                制作物の簡単な説明をここに記述します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <span class="bg-primary/20 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">Go</span>
+                                <span class="bg-primary/20 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">AWS</span>
+                            </div>
+                            <div class="mt-auto flex justify-center">
+                                <a href="[GitHub URL]" target="_blank" rel="noopener noreferrer" class="inline-block text-center bg-gray-600 text-white px-10 py-3 rounded-lg font-medium hover:bg-gray-500 transition-colors duration-300">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="https://main-portfolio-zsdz.onrender.com" target="_blank" rel="noopener noreferrer" class="inline-block bg-primary text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-600 transition-all duration-300 shadow-lg shadow-primary/20 transform hover:scale-105">
+                        View Demo
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 text-center section-animate animate-fade-in-up" style="animation-delay: 0.7s;">
+            <h2 class="text-4xl font-bold text-center mb-4 text-white">Contact</h2>
+            <div class="w-20 h-1 bg-primary mx-auto mb-12"></div>
+
+            <p class="text-lg text-sub-text mb-8 max-w-lg mx-auto">
+                お仕事のご依頼やご相談、その他お問い合わせはこちらからお願いいたします。
+                まずは気軽にご連絡ください。
+            </p>
+            
+            <a href="mailto:your_email@example.com" class="inline-block bg-primary text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-600 transition-all duration-300 shadow-lg shadow-blue-500/40 transform hover:scale-105">
+                your_email@example.com
+            </a>
+
+            <div class="flex justify-center space-x-8 mt-12">
+                <a href="[GitHub URL]" target="_blank" rel="noopener noreferrer" class="text-sub-text hover:text-primary transition-colors duration-300" title="GitHub">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="[X (Twitter) URL]" target="_blank" rel="noopener noreferrer" class="text-sub-text hover:text-primary transition-colors duration-300" title="X (Twitter)">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.116z"/></svg>
+                </a>
+                <a href="[LinkedIn URL]" target="_blank" rel="noopener noreferrer" class="text-sub-text hover:text-primary transition-colors duration-300" title="LinkedIn">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="bg-dark-card border-t border-gray-700 py-8">
+        <div class="container mx-auto px-6 text-center text-sub-text">
+            <p>&copy; 2025 Hayaki Takeichi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // タブ切り替え機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+
+                    // すべてのタブボタンとコンテンツを非アクティブに
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'text-white', 'border-primary');
+                        btn.classList.add('text-sub-text', 'border-transparent');
+                    });
+
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    // クリックされたタブをアクティブに
+                    this.classList.add('active', 'text-white', 'border-primary');
+                    this.classList.remove('text-sub-text', 'border-transparent');
+
+                    // 対応するコンテンツを表示
+                    document.getElementById(targetTab).classList.remove('hidden');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
