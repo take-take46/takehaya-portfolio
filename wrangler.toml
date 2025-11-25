@@ -1,0 +1,6 @@
+name = "takehaya-site"  
+compatibility_date = "2025-11"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"  
